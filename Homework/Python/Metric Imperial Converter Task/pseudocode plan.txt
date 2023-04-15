@@ -1,0 +1,30 @@
+SET im_options[7] TO all_im_conversions
+SET mi_options[7] TO all_mi_converisions
+
+SET conversion_values TO each_conversion_numbers
+
+FUNCTION convert_im
+	FOR mi IN mi_options
+		SEND mi TO Display
+	ENDFOR
+	
+	RECEIVE mi_option FROM KEYBOARD
+	
+	IF mi_option in mi_options
+		SET im_calculation TO mi_option * conversion_values[mi]
+		SEND im_calculation TO Display
+	ENDIF
+ENDFUNCTION
+
+FUNCTION convert_mi
+	FOR im IN im_options
+		SEND im TO Display
+	ENDFOR
+	
+	RECEIVE im_option FROM KEYBOARD
+	
+	IF im_option in im_options
+		SET mi_calculation TO im_option * conversion_values[im]
+		SEND mi_calculation TO Display
+	ENDIF
+ENDFUNCTION
